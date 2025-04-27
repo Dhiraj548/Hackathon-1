@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Container styling */
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 375px;
+        }
+
+        /* Form title */
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        /* Form group */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        /* Labels */
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        /* Inputs and Textarea */
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        /* Star Rating */
+        .rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            font-size: 30px;
+            color: #ccc;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        /* Change color when hovering */
+        .rating input:checked ~ label,
+        .rating label:hover,
+        .rating label:hover ~ label {
+            color: gold;
+        }
+
+        /* Submit Button */
+        .submit {
+            width: 100%;
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .submit:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="feedback-form">
+            <h2>Your Feedback</h2>
+            <form action="/submit-feedback" method="POST">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email">
+                </div>
+                <div class="form-group">
+                    <label>Rating:</label>
+                    <div class="rating">
+                        <input type="radio" name="rating" id="star5" value="5">
+                        <label for="star5">&#9733;</label>
+                        <input type="radio" name="rating" id="star4" value="4">
+                        <label for="star4">&#9733;</label>
+                        <input type="radio" name="rating" id="star3" value="3">
+                        <label for="star3">&#9733;</label>
+                        <input type="radio" name="rating" id="star2" value="2">
+                        <label for="star2">&#9733;</label>
+                        <input type="radio" name="rating" id="star1" value="1">
+                        <label for="star1">&#9733;</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="comments">Comments:</label>
+                    <textarea id="comments" name="comments" rows="4"></textarea>
+                </div>
+                <button type="submit" class="submit">Submit Feedback</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form");
+
+    form.addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent actual form submission
+
+        // Get form values
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const rating = document.querySelector("input[name='rating']:checked");
+        const comments = document.getElementById("comments").value.trim();
+
+        // Simple validation
+        if (name === "") {
+            alert("Please enter your name.");
+            return;
+        }
+
+        if (email !== "" && !validateEmail(email)) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+
+        if (!rating) {
+            alert("Please select a rating.");
+            return;
+        }
+
+        // Display confirmation
+        alert("Thank you for your feedback!\n\n" +
+            "Name: " + name + "\n" +
+            "Email: " + (email || "Not provided") + "\n" +
+            "Rating: " + rating.value + " stars\n" +
+            "Comments: " + (comments || "No comments"));
+
+        // Reset form
+        form.reset();
+    });
+
+    // Email validation function
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+});
+
+    </script>
+</body>
+
+</html>

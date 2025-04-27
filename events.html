@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Travel Fest - Events</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        section {
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .schedule {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .event {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 30%;
+            min-width: 250px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .event:hover {
+            transform: scale(1.05);
+        }
+
+        .event h3 {
+            margin: 10px 0;
+        }
+
+        .event button {
+            padding: 10px 20px;
+            background-color: black;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+        .event button:hover {
+            background-color: yellow;
+            color: black;
+        }
+
+        .event a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            display: inline-block;
+            width: 100%;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .event {
+                width: 45%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .schedule {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .event {
+                width: 80%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .event {
+                width: 90%;
+            }
+
+            header {
+                padding: 15px;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Time Travel Fest - Events</h1>
+    </header>
+
+    <section id="events">
+        <h2>Event Schedule</h2>
+        <div class="schedule">
+            <div class="event">
+                <h3>Dinosaur Hunt</h3>
+                <p><strong>Time Period:</strong> Prehistoric Era</p>
+                <p><strong>Time:</strong> 10:00 AM</p>
+                <button onclick="registerEvent('Dinosaur Hunt')"><a href="booking.html">Register</a></button>
+            </div>
+            <div class="event">
+                <h3>Knight Jousting</h3>
+                <p><strong>Time Period:</strong> Medieval Times</p>
+                <p><strong>Time:</strong> 2:00 PM</p>
+                <button onclick="registerEvent('Knight Jousting')"><a href="booking.html">Register</a></button>
+            </div>
+            <div class="event">
+                <h3>VR Space Adventure</h3>
+                <p><strong>Time Period:</strong> The Future</p>
+                <p><strong>Time:</strong> 6:00 PM</p>
+                <button onclick="registerEvent('VR Space Adventure')"><a href="booking.html">Register</a></button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Time Travel Fest. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function registerEvent(eventName) {
+            const name = prompt("Enter your name:");
+            const email = prompt("Enter your email:");
+            if (name && email) {
+                alert(`Thank you, ${name}! You have successfully registered for ${eventName}. A confirmation email has been sent to ${email}.`);
+            } else {
+                alert("Registration failed. Please provide your name and email.");
+            }
+        }
+    </script>
+</body>
+
+</html>
